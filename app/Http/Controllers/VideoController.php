@@ -54,33 +54,33 @@ class VideoController extends Controller
         ]);
         $video = $ffmpeg->open($video_url);
 
-        $cadena ="Esta es una frase de pruebas";
+        /*$cadena ="Esta es una frase de pruebas";
         $picture = imagecreate(350,20);
         $colorfondo = imagecolorallocate($picture,255,255,255);
         imagecolortransparent($picture, $colorfondo);
         $colortexto = imagecolorallocate($picture,255,255,255);
         imagestring($picture,12,0,0, $cadena, $colortexto);
         imagepng($picture, 'creada.png');
-        imagedestroy($picture);
+        imagedestroy($picture);*/
 
 
         $img_url = 'img/favicon.png';
-        $img_url2 = 'creada.png';
+        //$img_url2 = 'creada.png';
 
-        /*$wm1 = new WatermarkFilter($img_url, [
+        $wm1 = new WatermarkFilter($img_url, [
             'position' => 'relative',
             'top' => 50,
             'left' => 50
-        ], 1);*/
+        ], 1);
 
-        $wm2 = new WatermarkFilter($img_url2, [
+        /*$wm2 = new WatermarkFilter($img_url2, [
             'position' => 'relative',
             'top' => 100,
             'right' => 300
-        ], 1);
+        ], 1);*/
 
-        //$video->addFilter($wm1);
-        $video->addFilter($wm2);
+        $video->addFilter($wm1);
+        //$video->addFilter($wm2);
 
         /*$video
             ->filters()
