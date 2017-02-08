@@ -136,6 +136,7 @@ class YoutubeController extends Controller
                     'status' => 'video uploaded',
                     'title' => $status['snippet']['title'],
                     'id' => $status['id'],
+                    'url' => 'https://www.youtube.com/watch?v='.$status['id'],
                 ]);
 
                 //dd('termino');
