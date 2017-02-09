@@ -20,3 +20,4 @@ Route::post('/video', 'VideoController@store')->name('video.store');
 Route::get('/video/transform', 'VideoController@transform')->name('video.transform');
 
 Route::get('youtube', 'YoutubeController@youtube')->name('youtube');
+Route::get('video/youtube', 'YoutubeController@show')->name('video.youtube');

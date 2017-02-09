@@ -46,12 +46,25 @@ class VideoController extends Controller
         //$video_url = storage_path('app/videos') . '/2-20160720_164633_4289.mp4';
         //$video_url = storage_path('app/videos') . '/webm.webm';
 
-        $ffmpeg = FFMpeg::create([
-            /*'ffmpeg.binaries'  => 'C:/ffmpeg/bin/ffmpeg.exe',
-            'ffprobe.binaries' => 'C:/ffmpeg/bin/ffprobe.exe',*/
-            'timeout'          => 0, // The timeout for the underlying process
-            'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
-        ]);
+        $ruta_ffmpeg = env('RUTA_FFMPEG', 'n');
+
+        $params = [];
+
+        if($ruta_ffmpeg == 's') {
+            $params = [
+                'ffmpeg.binaries'  => 'C:/ffmpeg/bin/ffmpeg.exe',
+                'ffprobe.binaries' => 'C:/ffmpeg/bin/ffprobe.exe',
+                'timeout'          => 0, // The timeout for the underlying process
+                'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
+            ];
+        }else{
+            $params = [
+                'timeout'          => 0, // The timeout for the underlying process
+                'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
+            ];
+        }
+
+        $ffmpeg = FFMpeg::create($params);
         $video = $ffmpeg->open($video_url);
 
         /*$cadena ="Esta es una frase de pruebas";

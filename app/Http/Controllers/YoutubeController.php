@@ -132,12 +132,18 @@ class YoutubeController extends Controller
                 // If you want to make other calls after the file upload, set setDefer back to false
                 $client->setDefer(false);
 
-                dd([
+                /*dd([
                     'status' => 'video uploaded',
                     'title' => $status['snippet']['title'],
                     'id' => $status['id'],
                     'url' => 'https://www.youtube.com/watch?v='.$status['id'],
-                ]);
+                ]);*/
+
+                Log::info('**video id '. $status['id']);
+
+                session(['video_id' => $status['id']]);
+
+                return redirect()->route('video.youtube');
 
                 //dd('termino');
 
@@ -160,5 +166,13 @@ class YoutubeController extends Controller
             return view('auth')->with('url', $authUrl);
         }
 
+    }
+
+    public function show()
+    {
+        $youtube_url = 'https://www.youtube.com/embed/' . session('video_id');
+        //$youtube_url = 'https://www.youtube.com/embed/DQUyzTDmAj0';
+
+        return view('video.youtube')->with('youtube_url', $youtube_url);
     }
 }
