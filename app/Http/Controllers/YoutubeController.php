@@ -26,7 +26,8 @@ class YoutubeController extends Controller
         $client = new Google_Client();
         $client->setClientId($OAUTH2_CLIENT_ID);
         $client->setClientSecret($OAUTH2_CLIENT_SECRET);
-        $client->setScopes('https://www.googleapis.com/auth/youtube');
+        //$client->setScopes('https://www.googleapis.com/auth/youtube');
+        $client->setScopes('https://www.googleapis.com/auth/youtube.upload');
         //$redirect = filter_var('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'],  FILTER_SANITIZE_URL);
         $redirect = route('youtube');
         $client->setRedirectUri($redirect);
